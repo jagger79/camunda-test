@@ -10,18 +10,17 @@
     </parent>
 
     <groupId>cz.rj</groupId>
-    <artifactId>camunda</artifactId>
+    <artifactId>camunda-test</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <description>Test for camunda</description>
 
     <properties>
         <java.version>23</java.version>
 
+        <spring-boot.version>${project.parent.version}</spring-boot.version>
+        <spring-cloud-dependencies.version>2024.0.0</spring-cloud-dependencies.version>
+
         <jaxb-maven-plugin.version>4.0.8</jaxb-maven-plugin.version>
         <jaxb-runtime.version>4.0.5</jaxb-runtime.version>
-
-        <spring-boot.version>3.4.1</spring-boot.version>
-        <spring-cloud-dependencies.version>2024.0.0</spring-cloud-dependencies.version>
 
         <iban4j.version>3.2.10-RELEASE</iban4j.version>
         <mapstruct-processor.version>1.6.3</mapstruct-processor.version>
