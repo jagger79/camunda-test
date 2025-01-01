@@ -1,0 +1,752 @@
+<!--This XML file does not appear to have any style information associated with it. The document tree is shown below.-->
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/COPWebservice"
+             targetNamespace="urn:microsoft-dynamics-schemas/codeunit/COPWebservice">
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema"
+                xmlns:tns="urn:microsoft-dynamics-schemas/xmlports/COPWebservice" elementFormDefault="qualified"
+                targetNamespace="urn:microsoft-dynamics-schemas/xmlports/COPWebservice">
+            <complexType name="BankDetails">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" name="ClaimNoPayment" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="{00000000-0000-0000-0000-000000000000}"
+                             name="TransactionIDPayment" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="IBAN" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="accountHolder" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="assistance">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" name="ClaimNoAssistance" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="{00000000-0000-0000-0000-000000000000}"
+                             name="TransactionIDAssistance" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="type" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01T00:00:00" name="useDate" type="dateTime"/>
+                    <element minOccurs="0" maxOccurs="1" name="status" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="insuredPerson">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="{00000000-0000-0000-0000-000000000000}"
+                             name="TransactionIDContact" type="string"/>
+                    <element minOccurs="1" maxOccurs="unbounded" name="personType" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="personNumber" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="givenName" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="lastname" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="gender" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="street" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="postCode" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="city" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="country" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="nationality" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="cityOfBirth" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="countryOfBirth" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="phoneNumber" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="faxNumber" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="mobileNumber" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="email" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="preferredContactType" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0001-01-01" name="dateOfBirth" type="date"/>
+                </sequence>
+            </complexType>
+            <complexType name="CreateOrUpdateClaim">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="{00000000-0000-0000-0000-000000000000}"
+                             name="TransactionID" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="claimNumber" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="risk" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="insuredRiskCombination" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="employmentType" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="claimstatus" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="statusAssessmentCode" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="false" name="isDuplicate" type="boolean"/>
+                    <element minOccurs="0" maxOccurs="1" name="statusReasonText" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="type" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="dorfcType" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0001-01-01" name="reportDate" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" name="product" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="productID" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="groupInsContractNr" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="partnerNumber" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="navisionContractNumber" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="contractStartDate" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" name="referenceNumber" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="ouContractNumber" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="partnerProductType" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="signatureDate" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="firstDueDate" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="contractEndDate" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0" name="dueDay" type="int"/>
+                    <element minOccurs="0" maxOccurs="1" name="claimBenefitInterval" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" default="0" name="claimAmount" type="decimal"/>
+                    <element minOccurs="0" maxOccurs="1" default="0" name="remainingInstalments" type="int"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="subscriptionDate" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" name="riskDescription" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="claimBenefitFrom" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="claimBenefitUntil" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0" name="maxClaimBenefitDuration" type="int"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="occuranceDate" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="confirmationCompletionDate"
+                             type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="completionDate" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="approvalConfirmationDate"
+                             type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="approvalDate" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" name="claimRegistrationType" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="specialProductName" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="specialPartnerName" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="claimSystemVersion" type="int"/>
+                    <element minOccurs="0" maxOccurs="unbounded" name="BankDetails" type="tns:BankDetails"/>
+                    <element minOccurs="0" maxOccurs="unbounded" name="assistance" type="tns:assistance"/>
+                    <element minOccurs="1" maxOccurs="unbounded" name="insuredPerson" type="tns:insuredPerson"/>
+                </sequence>
+            </complexType>
+            <complexType name="RootDimensions" mixed="true">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="1" name="CreateOrUpdateClaim" type="tns:CreateOrUpdateClaim"/>
+                </sequence>
+            </complexType>
+            <element name="RootDimensions" type="tns:RootDimensions"/>
+        </schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema"
+                xmlns:tns="urn:microsoft-dynamics-schemas/xmlports/COPWebservice" elementFormDefault="qualified"
+                targetNamespace="urn:microsoft-dynamics-schemas/xmlports/COPWebservice">
+            <complexType name="ChangeContact">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="{00000000-0000-0000-0000-000000000000}"
+                             name="TransactionIDContact" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="claimNumber" type="string"/>
+                    <element minOccurs="1" maxOccurs="unbounded" name="personType" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="personNumber" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="givenName" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="lastname" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="gender" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="street" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="postCode" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="city" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="country" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="nationality" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="cityOfBirth" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="countryOfBirth" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="phoneNumber" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="faxNumber" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="mobileNumber" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="email" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="preferredContactType" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0001-01-01" name="dateOfBirth" type="date"/>
+                </sequence>
+            </complexType>
+            <complexType name="COPChangeContactViaXMLPort" mixed="true">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="unbounded" name="ChangeContact" type="tns:ChangeContact"/>
+                </sequence>
+            </complexType>
+            <element name="COPChangeContactViaXMLPort" type="tns:COPChangeContactViaXMLPort"/>
+        </schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema"
+                xmlns:tns="urn:microsoft-dynamics-schemas/xmlports/COPWebservice" elementFormDefault="qualified"
+                targetNamespace="urn:microsoft-dynamics-schemas/xmlports/COPWebservice">
+            <complexType name="COPClaimUpdateLeifoAL">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="{00000000-0000-0000-0000-000000000000}"
+                             name="TransactionIDLeifoAL" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="SelfEmploymentStart" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="SelfEmploymentEnd" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" name="selfEmployEndReason" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="selfEmployEndReasonDescription" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="ReportingDate" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="EmploymentContractEnd" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="JobDismissalDate" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="TransferContractEnd" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="ReceiptBenefitALG1Start"
+                             type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="ReceiptBenefitALG1End" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0" name="DailyEntitlementALG1" type="decimal"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="ReceiptBenefitALG2Start"
+                             type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="ReceiptBenefitALG2End" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0" name="MonthlyEntitlementALG2" type="decimal"/>
+                    <element minOccurs="0" maxOccurs="1" name="ReasonforlaterALG" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="ReasonforlaterALGText" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="InterruptReceiptBenStart"
+                             type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="InterruptReceiptBenEnd"
+                             type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="ResumingWorkDate" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="false" name="secondaryEmployment" type="boolean"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="IncapableofWorkingStart"
+                             type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="IncapableofWorkingEnd" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" name="employerdismissalReason" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="employerdismissalReasonText" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" default="false" name="dismissalProtectionTrial"
+                             type="boolean"/>
+                </sequence>
+            </complexType>
+            <complexType name="COPClaimUpdateLeifoxAL">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="{00000000-0000-0000-0000-000000000000}"
+                             name="TransactionID" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="ClaimNo" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="IPNo" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="JobGroupKey" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="JobKey" type="string"/>
+                    <element minOccurs="1" maxOccurs="unbounded" name="COPClaimUpdateLeifoAL"
+                             type="tns:COPClaimUpdateLeifoAL"/>
+                </sequence>
+            </complexType>
+            <complexType name="COPClaimUpdateLeifoALxViaXMLPort" mixed="true">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="unbounded" name="COPClaimUpdateLeifoxAL"
+                             type="tns:COPClaimUpdateLeifoxAL"/>
+                </sequence>
+            </complexType>
+            <element name="COPClaimUpdateLeifoALxViaXMLPort" type="tns:COPClaimUpdateLeifoALxViaXMLPort"/>
+        </schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema"
+                xmlns:tns="urn:microsoft-dynamics-schemas/xmlports/COPWebservice" elementFormDefault="qualified"
+                targetNamespace="urn:microsoft-dynamics-schemas/xmlports/COPWebservice">
+            <complexType name="COPClaimUpdateICD10CodeLeifoxAU">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="{00000000-0000-0000-0000-000000000000}"
+                             name="TransactionID" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="ClaimNo." type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="ICD10DiagnosisCode" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="COPClaimUpdateLeifoAU">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="IncapacitatedStart" type="date"/>
+                    <element minOccurs="1" maxOccurs="1" name="ConfidentialityReleaseType" type="string"/>
+                    <element minOccurs="0" maxOccurs="unbounded" name="COPClaimUpdateICD10CodeLeifoxAU"
+                             type="tns:COPClaimUpdateICD10CodeLeifoxAU"/>
+                </sequence>
+            </complexType>
+            <complexType name="COPClaimUpdateLeifoxAU">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="{00000000-0000-0000-0000-000000000000}"
+                             name="TransactionID" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="ClaimNo" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="IPNo" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="JobGroupKey" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="JobKey" type="string"/>
+                    <element minOccurs="1" maxOccurs="unbounded" name="COPClaimUpdateLeifoAU"
+                             type="tns:COPClaimUpdateLeifoAU"/>
+                </sequence>
+            </complexType>
+            <complexType name="COPClaimUpdateLeifoAUxViaXMLPort" mixed="true">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="unbounded" name="COPClaimUpdateLeifoxAU"
+                             type="tns:COPClaimUpdateLeifoxAU"/>
+                </sequence>
+            </complexType>
+            <element name="COPClaimUpdateLeifoAUxViaXMLPort" type="tns:COPClaimUpdateLeifoAUxViaXMLPort"/>
+        </schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema"
+                xmlns:tns="urn:microsoft-dynamics-schemas/xmlports/COPWebservice" elementFormDefault="qualified"
+                targetNamespace="urn:microsoft-dynamics-schemas/xmlports/COPWebservice">
+            <complexType name="ONECOPBankDetails">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" name="ClaimNoPayment" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="{00000000-0000-0000-0000-000000000000}"
+                             name="TransactionIDPayment" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="IBAN" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="accountHolder" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="ONECOPassistance">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" name="ClaimNoAssistance" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="{00000000-0000-0000-0000-000000000000}"
+                             name="TransactionIDAssistance" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="type" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01T00:00:00" name="useDate" type="dateTime"/>
+                    <element minOccurs="0" maxOccurs="1" name="status" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="ONECOPinsuredPerson">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="{00000000-0000-0000-0000-000000000000}"
+                             name="TransactionIDContact" type="string"/>
+                    <element minOccurs="1" maxOccurs="unbounded" name="personType" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="personNumber" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="givenName" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="lastname" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="gender" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="street" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="postCode" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="city" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="country" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="nationality" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="cityOfBirth" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="countryOfBirth" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="phoneNumber" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="faxNumber" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="mobileNumber" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="email" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="preferredContactType" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="dateOfBirth" type="date"/>
+                </sequence>
+            </complexType>
+            <complexType name="ONECOPCreateOrUpdateClaim">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="{00000000-0000-0000-0000-000000000000}"
+                             name="TransactionID" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="claimNumber" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="risk" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="insuredRiskCombination" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="employmentType" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="claimstatus" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="statusAssessmentCode" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" default="false" name="isDuplicate" type="boolean"/>
+                    <element minOccurs="0" maxOccurs="1" name="statusReasonText" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="type" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="dorfcType" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0001-01-01" name="reportDate" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" name="product" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="productID" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="groupInsContractNr" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="partnerNumber" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="navisionContractNumber" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="contractStartDate" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" name="referenceNumber" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="ouContractNumber" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="partnerProductType" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="signatureDate" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="firstDueDate" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="contractEndDate" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0" name="dueDay" type="int"/>
+                    <element minOccurs="0" maxOccurs="1" name="claimBenefitInterval" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" default="0" name="claimAmount" type="decimal"/>
+                    <element minOccurs="0" maxOccurs="1" default="0" name="remainingInstalments" type="int"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="subscriptionDate" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" name="riskDescription" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="claimBenefitFrom" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="claimBenefitUntil" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0" name="maxClaimBenefitDuration" type="int"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="occuranceDate" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="confirmationCompletionDate"
+                             type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="completionDate" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="approvalConfirmationDate"
+                             type="date"/>
+                    <element minOccurs="0" maxOccurs="1" default="0001-01-01" name="approvalDate" type="date"/>
+                    <element minOccurs="0" maxOccurs="1" name="claimRegistrationType" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="specialProductName" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="specialPartnerName" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" default="0" name="claimSystemVersion" type="int"/>
+                    <element minOccurs="0" maxOccurs="1" name="customerID" type="string"/>
+                    <element minOccurs="0" maxOccurs="unbounded" name="ONECOPBankDetails" type="tns:ONECOPBankDetails"/>
+                    <element minOccurs="0" maxOccurs="unbounded" name="ONECOPassistance" type="tns:ONECOPassistance"/>
+                    <element minOccurs="0" maxOccurs="unbounded" name="ONECOPinsuredPerson"
+                             type="tns:ONECOPinsuredPerson"/>
+                </sequence>
+            </complexType>
+            <complexType name="ONECOPRootDimensions" mixed="true">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="1" name="ONECOPCreateOrUpdateClaim"
+                             type="tns:ONECOPCreateOrUpdateClaim"/>
+                </sequence>
+            </complexType>
+            <element name="ONECOPRootDimensions" type="tns:ONECOPRootDimensions"/>
+        </schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema"
+                xmlns:tns="urn:microsoft-dynamics-schemas/xmlports/COPWebservice" elementFormDefault="qualified"
+                targetNamespace="urn:microsoft-dynamics-schemas/xmlports/COPWebservice">
+            <complexType name="claimDocument">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="{00000000-0000-0000-0000-000000000000}"
+                             name="transactionId" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="claimNo" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" default="{00000000-0000-0000-0000-000000000000}"
+                             name="versionSeries" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" default="{00000000-0000-0000-0000-000000000000}"
+                             name="filenetId" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="documentType" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="documentDescription" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="documentSource" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="claimDocumentrootDimension" mixed="true">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="unbounded" name="claimDocument" type="tns:claimDocument"/>
+                </sequence>
+            </complexType>
+            <element name="claimDocumentrootDimension" type="tns:claimDocumentrootDimension"/>
+        </schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema"
+                xmlns:tns="urn:microsoft-dynamics-schemas/xmlports/COPWebservice" elementFormDefault="qualified"
+                targetNamespace="urn:microsoft-dynamics-schemas/xmlports/COPWebservice">
+            <complexType name="COPContinuityNoticeUEPsd2">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="{00000000-0000-0000-0000-000000000000}"
+                             name="transactionID" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="claimNumber" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="{00000000-0000-0000-0000-000000000000}"
+                             name="sessionID" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="firstName" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="surname" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="false" name="answer1" type="boolean"/>
+                    <element minOccurs="1" maxOccurs="1" default="false" name="answer2" type="boolean"/>
+                    <element minOccurs="1" maxOccurs="1" default="false" name="answer3" type="boolean"/>
+                </sequence>
+            </complexType>
+            <complexType name="RootDimension" mixed="true">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" name="COPContinuityNoticeUEPsd2"
+                             type="tns:COPContinuityNoticeUEPsd2"/>
+                </sequence>
+            </complexType>
+            <element name="RootDimension" type="tns:RootDimension"/>
+        </schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+                targetNamespace="urn:microsoft-dynamics-schemas/codeunit/COPWebservice">
+            <element name="DocumentInfo">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="transactionid" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="claimno" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="filenetdocid" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="DocumentInfo_Result">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="return_value" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="AccountInfo">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="transactionid" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="insuredPersonNumber" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="userName" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="status" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="registrationLink" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="phonePassword" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="AccountInfo_Result">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="return_value" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="CreateOrUpdateClaim">
+                <complexType>
+                    <sequence>
+                        <element xmlns:q1="urn:microsoft-dynamics-schemas/xmlports/COPWebservice" minOccurs="1"
+                                 maxOccurs="1" name="cOPCreateOrUpdateClaim" type="q1:RootDimensions"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="CreateOrUpdateClaim_Result">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="return_value" type="string"/>
+                        <element xmlns:q2="urn:microsoft-dynamics-schemas/xmlports/COPWebservice" minOccurs="1"
+                                 maxOccurs="1" name="cOPCreateOrUpdateClaim" type="q2:RootDimensions"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="ChangeContact">
+                <complexType>
+                    <sequence>
+                        <element xmlns:q3="urn:microsoft-dynamics-schemas/xmlports/COPWebservice" minOccurs="1"
+                                 maxOccurs="1" name="cOPChangeContact" type="q3:COPChangeContactViaXMLPort"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="ChangeContact_Result">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="return_value" type="string"/>
+                        <element xmlns:q4="urn:microsoft-dynamics-schemas/xmlports/COPWebservice" minOccurs="1"
+                                 maxOccurs="1" name="cOPChangeContact" type="q4:COPChangeContactViaXMLPort"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="CreateClaimFormAL">
+                <complexType>
+                    <sequence>
+                        <element xmlns:q5="urn:microsoft-dynamics-schemas/xmlports/COPWebservice" minOccurs="1"
+                                 maxOccurs="1" name="cOPCreateClaimFormAL" type="q5:COPClaimUpdateLeifoALxViaXMLPort"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="CreateClaimFormAL_Result">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="return_value" type="string"/>
+                        <element xmlns:q6="urn:microsoft-dynamics-schemas/xmlports/COPWebservice" minOccurs="1"
+                                 maxOccurs="1" name="cOPCreateClaimFormAL" type="q6:COPClaimUpdateLeifoALxViaXMLPort"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="CreateClaimFormAU">
+                <complexType>
+                    <sequence>
+                        <element xmlns:q7="urn:microsoft-dynamics-schemas/xmlports/COPWebservice" minOccurs="1"
+                                 maxOccurs="1" name="cOPCreateClaimFormAU" type="q7:COPClaimUpdateLeifoAUxViaXMLPort"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="CreateClaimFormAU_Result">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="return_value" type="string"/>
+                        <element xmlns:q8="urn:microsoft-dynamics-schemas/xmlports/COPWebservice" minOccurs="1"
+                                 maxOccurs="1" name="cOPCreateClaimFormAU" type="q8:COPClaimUpdateLeifoAUxViaXMLPort"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="ONECOPCreateOrUpdateClaim">
+                <complexType>
+                    <sequence>
+                        <element xmlns:q9="urn:microsoft-dynamics-schemas/xmlports/COPWebservice" minOccurs="1"
+                                 maxOccurs="1" name="oNECOPCreateOrUpdateClaim" type="q9:ONECOPRootDimensions"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="ONECOPCreateOrUpdateClaim_Result">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="return_value" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="ClaimDocument">
+                <complexType>
+                    <sequence>
+                        <element xmlns:q10="urn:microsoft-dynamics-schemas/xmlports/COPWebservice" minOccurs="1"
+                                 maxOccurs="1" name="claimDocumentXMLPort" type="q10:claimDocumentrootDimension"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="ClaimDocument_Result">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="return_value" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="COPContinuityNoticeUEPsd2">
+                <complexType>
+                    <sequence>
+                        <element xmlns:q11="urn:microsoft-dynamics-schemas/xmlports/COPWebservice" minOccurs="1"
+                                 maxOccurs="1" name="importPSD2" type="q11:RootDimension"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="COPContinuityNoticeUEPsd2_Result">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="return_value" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </schema>
+    </types>
+    <message name="DocumentInfo">
+        <part name="parameters" element="tns:DocumentInfo"/>
+    </message>
+    <message name="DocumentInfo_Result">
+        <part name="parameters" element="tns:DocumentInfo_Result"/>
+    </message>
+    <message name="AccountInfo">
+        <part name="parameters" element="tns:AccountInfo"/>
+    </message>
+    <message name="AccountInfo_Result">
+        <part name="parameters" element="tns:AccountInfo_Result"/>
+    </message>
+    <message name="CreateOrUpdateClaim">
+        <part name="parameters" element="tns:CreateOrUpdateClaim"/>
+    </message>
+    <message name="CreateOrUpdateClaim_Result">
+        <part name="parameters" element="tns:CreateOrUpdateClaim_Result"/>
+    </message>
+    <message name="ChangeContact">
+        <part name="parameters" element="tns:ChangeContact"/>
+    </message>
+    <message name="ChangeContact_Result">
+        <part name="parameters" element="tns:ChangeContact_Result"/>
+    </message>
+    <message name="CreateClaimFormAL">
+        <part name="parameters" element="tns:CreateClaimFormAL"/>
+    </message>
+    <message name="CreateClaimFormAL_Result">
+        <part name="parameters" element="tns:CreateClaimFormAL_Result"/>
+    </message>
+    <message name="CreateClaimFormAU">
+        <part name="parameters" element="tns:CreateClaimFormAU"/>
+    </message>
+    <message name="CreateClaimFormAU_Result">
+        <part name="parameters" element="tns:CreateClaimFormAU_Result"/>
+    </message>
+    <message name="ONECOPCreateOrUpdateClaim">
+        <part name="parameters" element="tns:ONECOPCreateOrUpdateClaim"/>
+    </message>
+    <message name="ONECOPCreateOrUpdateClaim_Result">
+        <part name="parameters" element="tns:ONECOPCreateOrUpdateClaim_Result"/>
+    </message>
+    <message name="ClaimDocument">
+        <part name="parameters" element="tns:ClaimDocument"/>
+    </message>
+    <message name="ClaimDocument_Result">
+        <part name="parameters" element="tns:ClaimDocument_Result"/>
+    </message>
+    <message name="COPContinuityNoticeUEPsd2">
+        <part name="parameters" element="tns:COPContinuityNoticeUEPsd2"/>
+    </message>
+    <message name="COPContinuityNoticeUEPsd2_Result">
+        <part name="parameters" element="tns:COPContinuityNoticeUEPsd2_Result"/>
+    </message>
+    <portType name="COPWebservice_Port">
+        <operation name="DocumentInfo">
+            <input name="DocumentInfo" message="tns:DocumentInfo"/>
+            <output name="DocumentInfo_Result" message="tns:DocumentInfo_Result"/>
+        </operation>
+        <operation name="AccountInfo">
+            <input name="AccountInfo" message="tns:AccountInfo"/>
+            <output name="AccountInfo_Result" message="tns:AccountInfo_Result"/>
+        </operation>
+        <operation name="CreateOrUpdateClaim">
+            <input name="CreateOrUpdateClaim" message="tns:CreateOrUpdateClaim"/>
+            <output name="CreateOrUpdateClaim_Result" message="tns:CreateOrUpdateClaim_Result"/>
+        </operation>
+        <operation name="ChangeContact">
+            <input name="ChangeContact" message="tns:ChangeContact"/>
+            <output name="ChangeContact_Result" message="tns:ChangeContact_Result"/>
+        </operation>
+        <operation name="CreateClaimFormAL">
+            <input name="CreateClaimFormAL" message="tns:CreateClaimFormAL"/>
+            <output name="CreateClaimFormAL_Result" message="tns:CreateClaimFormAL_Result"/>
+        </operation>
+        <operation name="CreateClaimFormAU">
+            <input name="CreateClaimFormAU" message="tns:CreateClaimFormAU"/>
+            <output name="CreateClaimFormAU_Result" message="tns:CreateClaimFormAU_Result"/>
+        </operation>
+        <operation name="ONECOPCreateOrUpdateClaim">
+            <input name="ONECOPCreateOrUpdateClaim" message="tns:ONECOPCreateOrUpdateClaim"/>
+            <output name="ONECOPCreateOrUpdateClaim_Result" message="tns:ONECOPCreateOrUpdateClaim_Result"/>
+        </operation>
+        <operation name="ClaimDocument">
+            <input name="ClaimDocument" message="tns:ClaimDocument"/>
+            <output name="ClaimDocument_Result" message="tns:ClaimDocument_Result"/>
+        </operation>
+        <operation name="COPContinuityNoticeUEPsd2">
+            <input name="COPContinuityNoticeUEPsd2" message="tns:COPContinuityNoticeUEPsd2"/>
+            <output name="COPContinuityNoticeUEPsd2_Result" message="tns:COPContinuityNoticeUEPsd2_Result"/>
+        </operation>
+    </portType>
+    <binding name="COPWebservice_Binding" type="tns:COPWebservice_Port">
+        <binding xmlns="http://schemas.xmlsoap.org/wsdl/soap/" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="DocumentInfo">
+            <operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/"
+                       soapAction="urn:microsoft-dynamics-schemas/codeunit/COPWebservice:DocumentInfo"
+                       style="document"/>
+            <input name="DocumentInfo">
+                <body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal"/>
+            </input>
+            <output name="DocumentInfo_Result">
+                <body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal"/>
+            </output>
+        </operation>
+        <operation name="AccountInfo">
+            <operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/"
+                       soapAction="urn:microsoft-dynamics-schemas/codeunit/COPWebservice:AccountInfo" style="document"/>
+            <input name="AccountInfo">
+                <body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal"/>
+            </input>
+            <output name="AccountInfo_Result">
+                <body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal"/>
+            </output>
+        </operation>
+        <operation name="CreateOrUpdateClaim">
+            <operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/"
+                       soapAction="urn:microsoft-dynamics-schemas/codeunit/COPWebservice:CreateOrUpdateClaim"
+                       style="document"/>
+            <input name="CreateOrUpdateClaim">
+                <body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal"/>
+            </input>
+            <output name="CreateOrUpdateClaim_Result">
+                <body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal"/>
+            </output>
+        </operation>
+        <operation name="ChangeContact">
+            <operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/"
+                       soapAction="urn:microsoft-dynamics-schemas/codeunit/COPWebservice:ChangeContact"
+                       style="document"/>
+            <input name="ChangeContact">
+                <body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal"/>
+            </input>
+            <output name="ChangeContact_Result">
+                <body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal"/>
+            </output>
+        </operation>
+        <operation name="CreateClaimFormAL">
+            <operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/"
+                       soapAction="urn:microsoft-dynamics-schemas/codeunit/COPWebservice:CreateClaimFormAL"
+                       style="document"/>
+            <input name="CreateClaimFormAL">
+                <body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal"/>
+            </input>
+            <output name="CreateClaimFormAL_Result">
+                <body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal"/>
+            </output>
+        </operation>
+        <operation name="CreateClaimFormAU">
+            <operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/"
+                       soapAction="urn:microsoft-dynamics-schemas/codeunit/COPWebservice:CreateClaimFormAU"
+                       style="document"/>
+            <input name="CreateClaimFormAU">
+                <body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal"/>
+            </input>
+            <output name="CreateClaimFormAU_Result">
+                <body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal"/>
+            </output>
+        </operation>
+        <operation name="ONECOPCreateOrUpdateClaim">
+            <operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/"
+                       soapAction="urn:microsoft-dynamics-schemas/codeunit/COPWebservice:ONECOPCreateOrUpdateClaim"
+                       style="document"/>
+            <input name="ONECOPCreateOrUpdateClaim">
+                <body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal"/>
+            </input>
+            <output name="ONECOPCreateOrUpdateClaim_Result">
+                <body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal"/>
+            </output>
+        </operation>
+        <operation name="ClaimDocument">
+            <operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/"
+                       soapAction="urn:microsoft-dynamics-schemas/codeunit/COPWebservice:ClaimDocument"
+                       style="document"/>
+            <input name="ClaimDocument">
+                <body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal"/>
+            </input>
+            <output name="ClaimDocument_Result">
+                <body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal"/>
+            </output>
+        </operation>
+        <operation name="COPContinuityNoticeUEPsd2">
+            <operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/"
+                       soapAction="urn:microsoft-dynamics-schemas/codeunit/COPWebservice:COPContinuityNoticeUEPsd2"
+                       style="document"/>
+            <input name="COPContinuityNoticeUEPsd2">
+                <body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal"/>
+            </input>
+            <output name="COPContinuityNoticeUEPsd2_Result">
+                <body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="COPWebservice">
+        <port name="COPWebservice_Port" binding="tns:COPWebservice_Binding">
+            <address xmlns="http://schemas.xmlsoap.org/wsdl/soap/"
+                     location="http://strv071nast1.euro.net.intra:7467/CAMM2018T_WS0/WS/Leistungsverwaltung%20TEST/Codeunit/COPWebservice"/>
+        </port>
+    </service>
+</definitions>

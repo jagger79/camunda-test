@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1qnfphm" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.29.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.5.0">
+  <bpmn:process id="create-declaration-process" name="Create declaration process" isExecutable="true">
+    <bpmn:serviceTask id="Activity_declaration_create" name="Create declaration">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="declaration-create" retries="2" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1fvijcp</bpmn:incoming>
+      <bpmn:outgoing>Flow_1vrbcue</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_06tc7oh" name="Declaration created">
+      <bpmn:incoming>Flow_1vrbcue</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_075vthc" sourceRef="StartEvent_1" targetRef="Activity_get_questionnaire" />
+    <bpmn:sequenceFlow id="Flow_1fvijcp" sourceRef="Activity_get_questionnaire" targetRef="Activity_declaration_create" />
+    <bpmn:sequenceFlow id="Flow_1vrbcue" sourceRef="Activity_declaration_create" targetRef="Event_06tc7oh" />
+    <bpmn:serviceTask id="Activity_get_questionnaire" name="Get questionnaire">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="get-questionnaire" retries="5" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_075vthc</bpmn:incoming>
+      <bpmn:outgoing>Flow_1fvijcp</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:startEvent id="StartEvent_1" name="Start">
+      <bpmn:outgoing>Flow_075vthc</bpmn:outgoing>
+    </bpmn:startEvent>
+  </bpmn:process>
+  <bpmn:signal id="Signal_2que8to" name="declaration_created" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="create-declaration-process">
+      <bpmndi:BPMNShape id="Activity_0j8p359_di" bpmnElement="Activity_declaration_create">
+        <dc:Bounds x="770" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="186" y="142" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_06tc7oh_di" bpmnElement="Event_06tc7oh">
+        <dc:Bounds x="1082" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1072" y="142" width="56" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1bl3lc5_di" bpmnElement="Activity_get_questionnaire">
+        <dc:Bounds x="470" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_075vthc_di" bpmnElement="Flow_075vthc">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="470" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1fvijcp_di" bpmnElement="Flow_1fvijcp">
+        <di:waypoint x="570" y="117" />
+        <di:waypoint x="770" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vrbcue_di" bpmnElement="Flow_1vrbcue">
+        <di:waypoint x="870" y="117" />
+        <di:waypoint x="1082" y="117" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
