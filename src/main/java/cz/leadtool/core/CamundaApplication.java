@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @Deployment(resources = {"classpath:process/*.bpmn"})
-public class TestApplication {
+public class CamundaApplication {
     public static void main(String[] args) {
-        SpringApplication.run(TestApplication.class, args);
+        SpringApplication.run(CamundaApplication.class, args);
     }
 }
