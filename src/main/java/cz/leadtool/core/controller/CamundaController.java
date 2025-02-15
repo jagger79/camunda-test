@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.Map;
 import java.util.UUID;
 
-@Component
+//@Component
 @Slf4j
 @RequiredArgsConstructor
 public class CamundaController {

@@ -1,6 +1,7 @@
 package cz.leadtool.core.controller;
 
 import cz.leadtool.core.domain.camunda.DeclarationProcessInput;
+import io.camunda.client.CamundaClient;
 import io.camunda.zeebe.client.ZeebeClient;
 import io.camunda.zeebe.client.api.response.ProcessInstanceEvent;
 import io.camunda.zeebe.client.api.response.ProcessInstanceResult;
@@ -18,7 +19,7 @@ import java.util.Map;
 @Slf4j
 @RequiredArgsConstructor
 public class DeclarationController {
-    private final ZeebeClient zeebeClient;
+    private final CamundaClient zeebeClient;
 
     @PostMapping("camunda/{processId}")
     public ResponseEntity<Object> createProcessInstance(@PathVariable final String processId,
@@ -32,11 +33,11 @@ public class DeclarationController {
                 .variables(variables);
 
         if (in.isSync()) {
-            final ProcessInstanceResult result = process.withResult().send().join();
+            final var result = process.withResult().send().join();
             log.info("finished process,{}", result.getBpmnProcessId());
             return ResponseEntity.ok(result.getVariablesAsMap());
         }
-        final ProcessInstanceEvent event = process.send().join();
+        final var event = process.send().join();
         log.info("started process instance,bpmnProcessId={},id={}", event.getBpmnProcessId(),
                 event.getProcessInstanceKey());
         return ResponseEntity.ok("{}");
